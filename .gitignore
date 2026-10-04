@@ -1,0 +1,7 @@
+# Tooling / IDE
+.clj-kondo/
+.lsp/
+.vscode/
+
+.DS_Store
+**/.DS_Store
