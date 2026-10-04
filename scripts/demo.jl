@@ -36,6 +36,12 @@ foreach(println, derivation_cycles(reg))
 println("\n== Mutual allocations (circling pairs) ==")
 foreach(println, mutual_allocations(reg))
 
+println("\n== Rendering figures ==")
+figdir = joinpath(@__DIR__, "..", "out", "figures")
+println("  ", plot_derivation(reg;  path=joinpath(figdir, "derivation.png")))
+println("  ", plot_allocations(reg; path=joinpath(figdir, "allocations.png")))
+println("  ", plot_circulation(reg; path=joinpath(figdir, "circulation.png")))
+
 out = joinpath(@__DIR__, "..", "out"); mkpath(out)
 to_excel_all(reg, out)
 println("\nExcel written to ", out)

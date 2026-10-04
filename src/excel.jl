@@ -16,7 +16,8 @@ Write a single workbook for `sys_id` with two sheets, INCOMING and OUTGOING.
 function to_excel(reg::Registry, sys_id::AbstractString, path::AbstractString)
     inc = DataFrame(incoming_view(reg, sys_id))
     out = DataFrame(outgoing_view(reg, sys_id))
-    XLSX.writetable(path, ["INCOMING" => inc, "OUTGOING" => out])
+    XLSX.writetable(path, ["INCOMING" => inc, "OUTGOING" => out];
+                    overwrite = true)
     return path
 end
 

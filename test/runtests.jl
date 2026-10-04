@@ -144,4 +144,15 @@ const DATA = joinpath(@__DIR__, "..", "data")
             @test Set(keys(reg2.status))       == Set(keys(reg.status))
         end
     end
+
+    @testset "viz smoke" begin
+    reg = build_registry(DATA)
+    mktempdir() do tmp
+        for fn in (plot_derivation, plot_allocations, plot_circulation)
+            p = fn(reg; path=joinpath(tmp, string(fn) * ".png"))
+            @test isfile(p)
+            @test filesize(p) > 1000      # not an empty canvas
+        end
+    end
+end
 end
